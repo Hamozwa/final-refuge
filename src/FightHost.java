@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class FightHost {
-	private int GetInput() {
+	private static int GetInput() {
 		int result = -1;
 		Integer[] valid_results = { 0, 1 };
 		
@@ -13,26 +13,37 @@ public class FightHost {
             result = input.nextInt();
 		}
 		
-		input.close();
 		return result;
 	}
 	
-	public void PrintResult(Fighter player, Fighter enemy) {
-		System.out.println("Your Health: " + player.ReturnHealth());
-		System.out.println(enemy.ReturnName() + " Health: " + enemy.ReturnHealth());
+	private static void PrintResult(Fighter player, Fighter enemy) {
+		System.out.println("Your Health: " + player.getHealth());
+		System.out.println(enemy.getName() + " Health: " + enemy.getHealth());
 		System.out.println("Options");
 		System.out.println("0: Attack");
+		System.out.println("1: Defend");
+	}
+	
+	public static void processHit(Fighter attacker, Fighter defender) {
+		int damage = attacker.doDamage();
+		System.out.println(attacker.getName() + " hits " + defender.getName() + " for " + damage + " health!");
+		defender.takeHit(damage);
+		return;
 	}
 	
 	//Function usable from Main to run a fight sequence
-	public void RunFight(Fighter player, Fighter enemy) {
+	public static void RunFight(Fighter player, Fighter enemy) {
 		
 		//fight loop
-		int player_action;
-		while (enemy.ReturnHealth() > 0) {
-			//player's turn
+		while (enemy.getHealth() > 0) {
 			PrintResult(player, enemy);
-			player_action = GetInput();
+			
+			int player_action= GetInput();
+			if (player_action == 0) {
+				processHit(player, enemy);
+			}
+			
+			processHit(enemy, player);
 			
 		}
 			

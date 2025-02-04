@@ -8,9 +8,7 @@ public class Main {
 		Fighter player = new Human();
 		Fighter enemy = new Alien();
 		
-		FightHost fight = new FightHost();
-		
-		fight.RunFight(player, enemy);
+		FightHost.RunFight(player, enemy);
 	}
 
 }
