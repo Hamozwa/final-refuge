@@ -20,8 +20,8 @@ public class FightHost {
 		System.out.println("Your Health: " + player.getHealth());
 		System.out.println(enemy.getName() + " Health: " + enemy.getHealth());
 		System.out.println("Options");
-		System.out.println("0: Attack");
-		System.out.println("1: Defend");
+		System.out.println("1: Attack");
+		System.out.println("2: Defend");
 	}
 	
 	public static void processHit(Fighter attacker, Fighter defender) {
@@ -39,13 +39,18 @@ public class FightHost {
 			PrintResult(player, enemy);
 			
 			int player_action= GetInput();
-			if (player_action == 0) {
+			if (player_action == 1) {
 				processHit(player, enemy);
 			}
 			
 			processHit(enemy, player);
-			
+			if (player.getHealth() == 0) {
+				System.out.println("GAME OVER!");
+				return;
+			}
 		}
+		
+		System.out.println(enemy.getName() + " falls. You win the fight!");
 			
 	}
 }
