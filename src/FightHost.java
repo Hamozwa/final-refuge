@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class FightHost {
 	private int GetInput() {
 		int result = -1;
-		Integer[] valid_results = { 0 };
+		Integer[] valid_results = { 0, 1 };
 		
 		Scanner input = new Scanner(System.in);
 		
@@ -17,20 +17,22 @@ public class FightHost {
 		return result;
 	}
 	
-	private void PrintResult(Fighter player, Fighter enemy) {
+	public void PrintResult(Fighter player, Fighter enemy) {
 		System.out.println("Your Health: " + player.ReturnHealth());
 		System.out.println(enemy.ReturnName() + " Health: " + enemy.ReturnHealth());
 		System.out.println("Options");
 		System.out.println("0: Attack");
 	}
 	
-	protected void CreateFight(Fighter player, Fighter enemy) {
+	//Function usable from Main to run a fight sequence
+	public void RunFight(Fighter player, Fighter enemy) {
 		
-		//Create input system
-		
+		//fight loop
+		int player_action;
 		while (enemy.ReturnHealth() > 0) {
 			//player's turn
 			PrintResult(player, enemy);
+			player_action = GetInput();
 			
 		}
 			

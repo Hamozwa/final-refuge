@@ -10,7 +10,7 @@ public class Main {
 		
 		FightHost fight = new FightHost();
 		
-		fight.CreateFight(player, enemy);
+		fight.RunFight(player, enemy);
 	}
 
 }
